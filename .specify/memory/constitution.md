@@ -1,55 +1,104 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!-- SYNC IMPACT REPORT
+Version change: N/A -> 1.0.0
+Modified principles: N/A (new constitution)
+Added sections: All sections (new constitution)
+Removed sections: N/A
+Templates requiring updates:
+- .specify/templates/plan-template.md ✅ updated
+- .specify/templates/spec-template.md ✅ updated
+- .specify/templates/tasks-template.md ✅ updated
+- .specify/templates/commands/*.md ⚠ pending (if any contain agent-specific references)
+Follow-up TODOs: None
+-->
+
+# In-Memory Base Todo Application Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### Simplicity First
+All code must be beginner-friendly and readable. We prioritize clear, understandable implementations over complex optimizations in early phases. This ensures maintainability and ease of onboarding for new contributors.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### Incremental Evolution
+Features and architecture must evolve systematically across phases. Each phase builds cleanly on the previous one without breaking existing functionality. This ensures a stable progression toward the final AI-native system.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### Deterministic Behavior
+Early phases must exhibit deterministic behavior with no hidden state. All operations should produce predictable, repeatable outcomes to facilitate testing and debugging. This creates a solid foundation for later complexity.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### Clear Separation of Concerns
+Business logic, data storage, and user interface must be clearly separated. All business logic must be testable independently of UI components. This enables independent testing and maintenance of system components.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### AI-Augmentation Without Core Compromise
+AI features must enhance functionality without breaking core todo operations. The AI layer operates as an assistant that enhances user experience rather than replacing fundamental system behavior. Core functionality remains independent of AI services.
 
-### [PRINCIPLE_6_NAME]
+### Explicit State Management
+No implicit global state is allowed. All state changes must be explicit, tracked, and manageable. Variables and objects that maintain application state must be clearly identified and managed to prevent unexpected side effects.
 
+## Phase-Specific Requirements
 
-[PRINCIPLE__DESCRIPTION]
+### Phase I - In-Memory Python Console App
+- Language: Python only
+- Storage: In-memory data structures (lists, dicts, classes) only
+- Interface: Console-based CLI
+- Features: Complete CRUD for todos with status tracking
+- No external databases or file persistence
+- Focus on correctness and clarity over performance
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+### Phase II - Full-Stack Web Application
+- Frontend: Next.js with responsive design
+- Backend: FastAPI with proper validation
+- ORM: SQLModel for database operations
+- Database: Neon PostgreSQL for persistence
+- RESTful API contracts with input/output validation
+- Migration from in-memory to persistent storage
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### Phase III - AI-Powered Todo Chatbot
+- Tools: OpenAI ChatKit, Agents SDK, Official MCP SDK
+- AI acts as assistant, not source of truth
+- AI actions map to explicit backend operations
+- Guardrails prevent hallucinated state changes
+- Logging of all AI-driven actions for auditability
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+### Phase IV - Local Kubernetes Deployment
+- Containerization: Docker for all services
+- Orchestration: Minikube and Helm for local deployment
+- Reproducible configurations with no hardcoded secrets
+- Proper service discovery and networking
+- Local development parity with production
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+### Phase V - Advanced Cloud Deployment
+- Event streaming: Kafka for messaging
+- Service orchestration: Dapr for distributed applications
+- Cloud provider: DigitalOcean DOKS for deployment
+- Scalability and fault tolerance as priorities
+- Comprehensive observability (logs, metrics, traces)
+
+## Development Standards
+
+### Code Quality Requirements
+- Readable code with meaningful variable names
+- Well-documented functions and modules
+- Consistent formatting and linting (using established tools)
+- No unnecessary abstractions in early phases
+- Explicit error handling with appropriate messages
+
+### Testing Standards
+- Unit tests for all business logic functions
+- Integration tests for API endpoints and database operations
+- Test coverage requirements: minimum 80% for production code
+- End-to-end tests for critical user journeys
+- Performance benchmarks for each phase transition
+
+### Documentation Requirements
+- API documentation for all endpoints
+- Architecture diagrams for each phase
+- Deployment guides for each environment
+- User manuals for each phase's interface
+- Configuration documentation with examples
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+All development activities must comply with this constitution. Any deviation requires explicit approval through architectural decision records (ADRs). Code reviews must verify compliance with all principles. Changes to this constitution follow the amendment process documented in the project's governance procedures.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+This constitution serves as the foundational agreement for all contributors and stakeholders involved in the project lifecycle.
+
+**Version**: 1.0.0 | **Ratified**: 2026-02-07 | **Last Amended**: 2026-02-07

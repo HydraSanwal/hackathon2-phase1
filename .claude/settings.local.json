@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git fetch:*)",
+      "Bash(.specify/scripts/bash/create-new-feature.sh:*)",
+      "Bash(.specify/scripts/bash/setup-plan.sh:*)",
+      "Bash(.specify/scripts/bash/update-agent-context.sh claude:*)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh --json)",
+      "Bash(.specify/scripts/bash/check-prerequisites.sh:*)",
+      "Bash(if [ -d \"C:/Users/Hydra Sanwal/Documents/hackathon21phase/specs/001-in-memory-todo/checklists\" ])",
+      "Bash(then ls \"C:/Users/Hydra Sanwal/Documents/hackathon21phase/specs/001-in-memory-todo/checklists\")",
+      "Bash(else echo \"No checklists directory found\")",
+      "Bash(fi)",
+      "Bash(pytest:*)",
+      "Bash(pip install:*)",
+      "Bash(python -m pytest:*)",
+      "Bash(.specify/scripts/bash/create-phr.sh:*)"
+    ]
+  }
+}
